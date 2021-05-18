@@ -14,6 +14,8 @@ import Navbar from "./Navbar.js";
 
 const SideBarMenu = () => {
   const [visible, setVisible] = React.useState(false);
+  const [content, setContent] = React.useState("home");
+  //does this select the initial choice, or should it be false
 
   return (
     <Grid columns={1}>
@@ -35,7 +37,7 @@ const SideBarMenu = () => {
         <Sidebar.Pushable as={Segment} className="sidebarWrapper">
           <Sidebar
             as={Menu}
-            animation="overlay"
+            animation="push"
             icon="labeled"
             inverted
             onHide={() => setVisible(false)}
@@ -43,24 +45,32 @@ const SideBarMenu = () => {
             visible={visible}
             width="thin"
           >
-            <Menu.Item as="a">
+            <Menu.Item as="a" onClick={() => setContent("home")}>
               <Icon name="home" />
               Home
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="gamepad" />
-              Games
+            <Menu.Item as="a" onClick={() => setContent("toy")}>
+              <Icon name="briefcase" />
+              Toys
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Channels
+            <Menu.Item as="a"  onClick={() => setContent("vpet")}>
+              <Icon name="game" />
+              Vpets
+            </Menu.Item>
+            <Menu.Item as="a"  onClick={() => setContent("figure")}>
+              <Icon name="universal access" />
+              Figures
+            </Menu.Item>
+            <Menu.Item as="a"  onClick={() => setContent("accessory")}>
+              <Icon name="suitcase" />
+              Accessories
             </Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher>
             <Segment basic>
               <Header as="h3">
-                <GridExampleContainer />
+                <GridExampleContainer content={content} />
               </Header>
             </Segment>
           </Sidebar.Pusher>
